@@ -1,0 +1,9 @@
+
+target/
+.idea/
+.git/
+.mvn/
+.postman/
+postman/
+.env
+*.log

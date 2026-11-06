@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Portal | University Management</title>
+
+    <link rel="stylesheet" href="portal.css">
+    <script src="portal.js" defer></script>
+</head>
+
+<body data-role="STUDENT">
+
+<header class="topbar">
+    <div class="brand">
+        🎓 University Management System
+    </div>
+
+    <button id="logoutBtn" class="logout-btn">
+        Logout
+    </button>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h3>Student Portal</h3>
+
+        <div class="nav-item active">
+            My Dashboard
+        </div>
+
+        <div class="nav-item" id="sidebarProfile">
+            My Profile
+        </div>
+    </aside>
+
+    <main class="content">
+
+        <div class="page-header">
+            <div>
+                <h1>Student Dashboard</h1>
+                <p>Welcome to your student portal</p>
+            </div>
+
+            <span class="role-tag">STUDENT</span>
+        </div>
+
+        <p id="message" role="status"></p>
+
+        <div class="summary-grid">
+
+            <div class="card">
+                <span>Student Name</span>
+                <h2 id="summaryName">Loading...</h2>
+            </div>
+
+            <div class="card">
+                <span>Department</span>
+                <h2 id="summaryDepartment">—</h2>
+            </div>
+
+            <div class="card">
+                <span>Current Semester</span>
+                <h2 id="summaryExtra">—</h2>
+            </div>
+
+        </div>
+
+        <section class="panel" id="profileSection">
+
+            <div class="panel-header">
+                <h2>My Student Profile</h2>
+                <button class="primary" id="editBtn">
+                    Edit Profile
+                </button>
+            </div>
+
+            <div class="profile-grid">
+
+                <div>
+                    <label>Student ID</label>
+                    <p id="profileId">—</p>
+                </div>
+
+                <div>
+                    <label>Full Name</label>
+                    <p id="profileName">—</p>
+                </div>
+
+                <div>
+                    <label>Username</label>
+                    <p id="profileUsername">—</p>
+                </div>
+
+                <div>
+                    <label>Email Address</label>
+                    <p id="profileEmail">—</p>
+                </div>
+
+                <div>
+                    <label>Department</label>
+                    <p id="profileDepartment">—</p>
+                </div>
+
+                <div>
+                    <label>Semester</label>
+                    <p id="profileExtra">—</p>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="panel hidden" id="editSection">
+            <h2>Edit Student Profile</h2>
+
+            <form id="editForm">
+
+                <label for="fullName">Full Name</label>
+                <input id="fullName" required>
+
+                <label for="email">Email</label>
+                <input id="email" type="email" required>
+
+                <label for="department">Department</label>
+                <input id="department" required>
+
+                <label for="extra">Semester</label>
+                <input id="extra" type="number"
+                       min="1" max="20" required>
+
+                <div class="form-actions">
+                    <button type="submit" class="primary">
+                        Save Changes
+                    </button>
+
+                    <button type="button"
+                            id="cancelBtn"
+                            class="secondary">
+                        Cancel
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

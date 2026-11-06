@@ -1,0 +1,54 @@
+
+services:
+
+  postgres:
+    image: postgres:17
+    container_name: university_postgres
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: university_db
+      POSTGRES_USER: university_user
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - university_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U university_user -d university_db
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: university_backend
+    restart: unless-stopped
+
+    ports:
+      - "8081:8081"
+
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/university_db
+      DB_USERNAME: university_user
+      DB_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD is required}
+
+      JWT_SECRET: ${JWT_SECRET:?JWT_SECRET is required}
+      BOOTSTRAP_ADMIN_ENABLED: "false"
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+
+volumes:
+  university_data:
